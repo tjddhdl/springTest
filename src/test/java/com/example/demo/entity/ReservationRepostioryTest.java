@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,22 @@ public class ReservationRepostioryTest {
 		repository.save(reservation);
 	}
 
+	@Test
+	void 데이터조회() {
+		Optional<Reservation> optional = repository.findById(5);
+		System.out.println(optional.get());
+	}
+
+	@Test
+	void 데이터수정() {
+		Optional<Reservation> optional = repository.findById(5);
+		Reservation reservation = optional.get();
+		reservation.guestName = "왈왈왈";
+		repository.save(reservation);
+	}
+
+	@Test
+	void 데이터삭제() {
+		repository.deleteById(5);
+	}
 }
